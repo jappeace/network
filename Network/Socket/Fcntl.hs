@@ -5,9 +5,9 @@ module Network.Socket.Fcntl where
 import qualified System.Posix.Internals
 
 #if !defined(mingw32_HOST_OS)
-import Network.Socket.Cbits
+import           Network.Socket.Cbits
 #endif
-import Network.Socket.Imports
+import           Network.Socket.Imports
 
 -- | Set the nonblocking flag on Unix.
 --   On Windows, nothing is done.
@@ -23,7 +23,7 @@ setCloseOnExecIfNeeded :: CInt -> IO ()
 #if defined(mingw32_HOST_OS)
 setCloseOnExecIfNeeded _ = return ()
 #else
-setCloseOnExecIfNeeded fd = System.Posix.Internals.setCloseOnExec fd
+setCloseOnExecIfNeeded _ = return ()
 #endif
 
 #if !defined(mingw32_HOST_OS)
